@@ -13,7 +13,7 @@ fi
 if [[ $1 =~ $REGEX ]]
 then
     echo "El Argumento ingresado debe ser un número positivo" && exit 2
-
+fi
 
 # Luego cambiamos a un directorio donde guardaremos imagenes, segun el numero indicado 
 # Elegimos un nombre, descargamos la imagen y la guardamos con el nombre selecto
@@ -32,4 +32,6 @@ zip fotos_descargadas.zip $DIRECTORIO/fotos_descargadas/*
 
 rm $DIRECTORIO/fotos_descargadas/*
 
+
+#FALTA HACER EL CHECKSUM
 exit 0

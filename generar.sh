@@ -22,7 +22,7 @@ then
 
 for i in $(seq 1 $1)
 do
-    NOMBRE=[shuf -n $1 NOMBRES]
+    NOMBRE="$( [shuf -n $1 NOMBRES] )"
     (cd $DIRECTORIO/fotos_descargadas && curl -o $NOMBRE.jpg https://source.unsplash.com/random/900%C3%97700/?person)
     sleep 2
 done

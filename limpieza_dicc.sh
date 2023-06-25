@@ -4,5 +4,8 @@
 # nombre y ocurrencias, solo nos interesa mantener el primero
 # esto se puede hacer con 
 
-# cut -d , -f  1 dict.csv > dict_limpio.csv
+# luego hay que transformar la primer letra a mayuscula
+# con una busqueda en google encontre
+
+# cut -d , -f  1 dict.csv | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1'  > dict_limpio.csv
 

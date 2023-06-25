@@ -9,3 +9,6 @@
 
 # cut -d , -f  1 dict.csv | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1'  > dict_limpio.csv
 
+
+# Una alternativa mas facil es usar python .uppers() y un for donde borremos todo lo que 
+# sigue despues de la coma

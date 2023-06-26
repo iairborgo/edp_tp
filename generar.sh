@@ -18,8 +18,6 @@ fi
 # Luego cambiamos a un directorio donde guardaremos imagenes, segun el numero indicado 
 # Elegimos un nombre, descargamos la imagen y la guardamos con el nombre selecto
 
-
-
 for i in $(seq 1 $1)
 do
     NOMBRE="$( [shuf -n $1 NOMBRES] )"
@@ -28,10 +26,10 @@ do
 done
 
 # Comprimimos las fotos descargadas en un archivo, luego procedemos a limpiar la carpeta
-zip fotos_descargadas.zip $DIRECTORIO/fotos_descargadas/*
+zip fotos_comprimidas.zip $DIRECTORIO/fotos_descargadas/*
 
 rm $DIRECTORIO/fotos_descargadas/*
 
+md5sum fotos_comprimidas.zip > checksum_zip.txt
 
-#FALTA HACER EL CHECKSUM
 exit 0

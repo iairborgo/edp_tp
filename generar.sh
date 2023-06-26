@@ -20,7 +20,7 @@ fi
 
 for i in $(seq 1 $1)
 do
-    NOMBRE="$( [shuf -n $1 NOMBRES] )"
+    NOMBRE=$(shuf -n $1 $NOMBRES)
     (cd $DIRECTORIO/fotos_descargadas && curl -o $NOMBRE.jpg https://source.unsplash.com/random/900%C3%97700/?person)
     sleep 2
 done
@@ -30,6 +30,6 @@ zip fotos_comprimidas.zip $DIRECTORIO/fotos_descargadas/*
 
 rm $DIRECTORIO/fotos_descargadas/*
 
-md5sum fotos_comprimidas.zip > checksum_zip.txt
+md5sum fotos_comprimidas.zip > checksum.txt
 
 exit 0

@@ -1,6 +1,6 @@
 #!bin/bash
 
-REGEX="^/[A-Z][a-z ]+$"
+REGEX="^/[A-Z][a-z]+( [A-Z][a-z]+)?$"
 DIRECTORIO="$( cd "$( dirname "$0" )" && pwd )"
 IMAGENES="$DIRECTORIO/fotos_descomprimidas"
 PROCESADA="$DIRECTORIO/fotos_procesadas"
@@ -16,6 +16,6 @@ do
     if [[ $f =~ $REGEX ]]
     then
         convert $f -gravity center -resize 512x512+0+0 \
-        -extent 512x512 "$PROCESADA/f"
+        -extent 512x512 "$PROCESADA/$f"
     fi
 done

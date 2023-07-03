@@ -15,6 +15,9 @@ do
     if [[ "$f" =~ $REGEX ]]
     then
         convert $f -gravity center -resize 512x512+0+0 \
-        -extent 512x512 "$PROCESADA/$f"
+        -extent 512x512 $PROCESADA/$f
     fi
 done
+
+
+exit 0

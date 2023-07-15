@@ -46,7 +46,8 @@ do
             	fi
 	    fi
         done
-    [ "$REPLY" == 3 ] || [ "$REPLY" == 4 ] && ./$opciones.sh && continue
+    [ "$REPLY" == 3 ] && ./$opciones.sh && continue
+    [ "$REPLY" == 4 ] && ./$opciones.sh && break
 done
 
 exit 0

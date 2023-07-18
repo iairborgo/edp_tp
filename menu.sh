@@ -26,7 +26,8 @@ do
                 intentos_gen=$((intentos_gen + 1))
                 if [ $intentos_gen -ge 5 ] 
                 then 
-                    echo -e "\nHas intentado demasiadas veces..\n"
+                    	echo -e "\nHas intentado demasiadas veces, lo siento...\n"
+			exit 1
                 fi 
             fi
         done
@@ -42,12 +43,13 @@ do
             	intentos_des=$((intentos_des + 1))
             	if [ $intentos_des -ge 5 ]
             	then
-                	echo -e "\nHas intentado demasiadas veces..\n"
+                	echo -e "\nLo siento, no se permiten mas intentos...\n"
+			exit 2
             	fi
 	    fi
         done
     [ "$REPLY" == 3 ] && ./$opciones.sh && continue
-    [ "$REPLY" == 4 ] && ./$opciones.sh && break
+    [ "$REPLY" == 4 ] && ./$opciones.sh && continue
 done
 
 exit 0

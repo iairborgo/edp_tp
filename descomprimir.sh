@@ -1,29 +1,29 @@
-#!bin/bash
+#!/bin/bash
 
-#Primero checkeamos que la cantidad de argumentos dada sea correcta
-if [[ $# -ne 2 ]]
-then
-    echo "Ingresar 2 argumentos (zip imagen, checksum)" && exit 1
+
+# Primero chequeamos que la cantidad de argumentos dada sea correcta
+
+if [[ $# -ne 2 ]]; then
+    echo "Ingresar 2 argumentos (archivo comprimido, archivo de checksum)" && exit 1
 fi
 
-DIRECTORIO="$( cd "$( dirname "$0" )" && pwd )"
+IMAGENES=$1
+CHECKSUM=$2
 
-IMAGENES=${1: -"fotos_comprimidas.zip"} # el - sirve para setear un argumento default
-CHECKSUM=${2: -"checksum.txt"}
+# Realizamos una verificación del checksum
 
-# Realizamos un checkeo para ver si la checksum otorgada
+ORIGINAL=$(cat "$CHECKSUM")
+CHECK=$(md5sum "$IMAGENES")
 
-CHECK=$(cat $CHECKSUM)
-ORIGINAL=$(md5sum $IMAGENES)
-
-if [[ "$CHECK" == "$ORIGINAL" ]]
-then
-    echo "Checksum validada"
+if [[ "$CHECK" == "$ORIGINAL" ]]; then
+    echo "Checksum validado"
 else
-    echo "Checksum no válida, reintentar"
+    echo "Checksum no válido, reintentar"
     exit 2
 fi
 
-unzip $IMAGENES -d $DIRECTORIO/fotos_descomprimidas
+# Extraemos los archivos en el directorio.
+tar xvf "$IMAGENES"
+mv imagenes_generadas imagenes_descomprimidas
 
 exit 0

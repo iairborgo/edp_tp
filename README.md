@@ -13,3 +13,6 @@ Opcion 3: Recorta aquellas imágenes que tienen nombres válidos de personas (en
 Opcion 4: Genera un archivo con la lista de nombres de todas las personas, otro listando los nombres "válidos", uno mas con la suma de todas las imagenes cuyo nombre finaliza en "a" y un ultimo archivo comprimido que incluye los archivos generados anteriormente y todas las imagenes.
 
 Opcion 5: Salir
+## Comandos para correr el script:
+docker build -t imagen_definitiva .
+docker run -it -v "$(pwd)":/app/output imagen_definitiva

@@ -1,14 +1,25 @@
 FROM ubuntu:22.04
-LABEL mainteiner="Avecilla, Borgo Elgart, Nardi"
 
-RUN apt-get update && apt-get install --no-install-recommends -y 
-RUN apt-get install -y imagemagick
-RUN apt-get install -y wget
-RUN apt-get install git -y
-RUN apt-get clean 
-RUN rm -rf /var/lib/apt/lists/*
+LABEL maintainer="Avecilla, Borgo Elgart, Nardi"
 
-WORKDIR /
-COPY . .
+# Actualizar lista de paquetes e instalar herramientas necesarias
+RUN apt-get update \
+    && apt-get install -y \
+        imagemagick \
+        wget \
+        git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configurar directorio de trabajo y copiar scripts
+WORKDIR /app
+COPY menu.sh generar.sh descomprimir.sh procesar.sh comprimir.sh ./
+
+# Dar permisos de ejecución a los scripts
 RUN chmod +x menu.sh generar.sh descomprimir.sh procesar.sh comprimir.sh
-CMD ["bash","/menu.sh"]
+
+# Definir un volumen o directorio de enlace
+VOLUME /app/output
+
+# Comando por defecto al iniciar el contenedor
+CMD ["bash", "/app/menu.sh"]
